@@ -1,0 +1,1484 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scroll for anchor navigation */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Offset anchored sections so fixed nav doesn't cover content */
+section[id] {
+    scroll-margin-top: 90px;
+}
+
+/* Navigation - fixed at top */
+nav {
+    width: 100%;
+    height: 80px;
+    background-color: #fffffe;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;        /* keeps navbar at top */
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+/* Push main content down so it's not hidden under fixed nav */
+main {
+    margin-top: 80px;
+}
+
+nav h1 {
+    font-family: sans-serif;
+    color: rgb(87, 24, 24);
+    font-size: clamp(1.2rem, 4vw, 2rem); /* scales nicely */
+    white-space: nowrap;                  /* prevents wrapping */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    font-size: 1.1rem;
+    font-family: sans-serif;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(87, 24, 24);
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color: #b34b4b; /* subtle hover effect */
+}
+
+/* Hamburger button - hidden by default */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: rgb(87, 24, 24);
+    border-radius: 3px;
+    transition: all 0.3s linear;
+}
+
+/* Main section */
+main {
+    width: 100%;
+    min-height: 80vh;        /* changed from height to min-height for flexibility */
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0) 70%), url('images/main\ section.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 5rem;       /* consistent padding */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+main h1 {
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: bold;
+    max-width: 600px;
+    line-height: 1.2;
+}
+
+main span {
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+
+main p {
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* ----------------------------------------------
+   TABLET & SMALL DESKTOP (between 769px and 1024px)
+   ---------------------------------------------- */
+@media (max-width: 1024px) and (min-width: 769px) {
+    nav ul {
+        gap: 1rem;            /* reduce gap on tablets */
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 2rem 3rem;   /* slightly less side padding */
+    }
+}
+
+/* ----------------------------------------------
+   MOBILE (up to 768px) - hamburger menu kicks in
+   ---------------------------------------------- */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fffffe;   /* match nav background */
+        position: absolute;
+        top: 80px;
+        left: 0;
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+
+    /* Adjust main section for mobile */
+    main {
+        padding: 2rem 1.5rem;
+        background: linear-gradient(100deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.6) 100%), 
+                    url('images/main\ section.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    main h1 {
+        max-width: 100%;
+    }
+
+    main p {
+        max-width: 100%;
+    }
+
+    main span {
+        width: 80px;          /* slightly smaller on mobile */
+    }
+}
+
+/* ----------------------------------------------
+   SMALL MOBILE (up to 480px) - fine-tune spacing
+   ---------------------------------------------- */
+@media (max-width: 480px) {
+    nav {
+        padding: 1rem;
+    }
+
+    nav h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    main h1 {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    main p {
+        font-size: 1rem;
+    }
+
+    main span {
+        width: 60px;
+        height: 6px;
+    }
+}
+
+/* ----------------------------------------------
+   ABOUT SECTION (newly added and made responsive)
+   ---------------------------------------------- */
+.about1 {
+    width: 100%;
+    min-height: 80vh;          /* changed from height to min-height for flexibility */
+    background: url('images/section1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;              /* adds breathing room on smaller screens */
+}
+
+.about1 div {
+    background-color: rgba(255, 255, 255);
+    padding: 4rem;
+    max-width: 600px;
+    width: 100%;                /* allows it to shrink on small screens */
+    text-align: center;
+    border-radius: 5mm;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.section1-span {
+    display: block;
+    width: 100px;               /* fixed width */
+    height: 8px;
+    background-color: goldenrod;
+}
+
+.about1 div h1 {
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: bold;
+}
+
+.about1 div p {
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: large;
+    line-height: 1.5;
+}
+
+/* Tablet adjustments for about section */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .about1 div {
+        padding: 3rem;
+        max-width: 550px;
+    }
+}
+
+/* Mobile adjustments for about section */
+@media (max-width: 768px) {
+    .about1 {
+        padding: 1.5rem;
+    }
+    .about1 div {
+        padding: 2.5rem;
+        max-width: 500px;
+    }
+    .about1 div p {
+        font-size: 1.1rem;      /* slightly smaller for readability */
+    }
+    .section1-span {
+        width: 80px;
+    }
+}
+
+/* Small mobile adjustments for about section */
+@media (max-width: 480px) {
+    .about1 {
+        padding: 1rem;
+    }
+    .about1 div {
+        padding: 2rem 1.5rem;
+    }
+    .about1 div h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+    }
+    .about1 div p {
+        font-size: 1rem;
+    }
+    .section1-span {
+        width: 60px;
+        height: 6px;
+    }
+}
+
+.about2{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    gap: 5rem;
+}
+.about2-textdiv {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.about2-textdiv span {
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+.about2-textdiv h1{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: bold;
+}
+.about2-textdiv p {
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: large;
+    line-height: 1.5;
+}
+.about2-imagediv {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about2-imagediv img {
+    width: 120%;
+    height: auto;
+    border-radius: 10mm;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    max-width: 120%;        /* prevents overflow on any screen */
+    height: auto;
+    border-radius: 10mm;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Tablet (769px – 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .about2 {
+        padding: 4rem 3rem;      /* reduce side padding */
+        gap: 3rem;               /* smaller gap between text and image */
+    }
+    .about2-textdiv p {
+        font-size: 1.1rem;       /* slightly smaller for readability */
+    }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .about2 {
+        flex-direction: column;  /* stack vertically */
+        padding: 3rem 2rem;
+        gap: 2rem;
+    }
+    .about2-textdiv,
+    .about2-imagediv {
+        width: 100%;             /* full width when stacked */
+    }
+    .about2-textdiv {
+        text-align: center;      /* center text for mobile (optional) */
+        align-items: center;     /* center span and heading */
+    }
+    .about2-textdiv span {
+        margin: 0 auto;          /* center the golden line */
+    }
+    .about2-imagediv img {
+        width: 100%;             /* image fits container */
+        max-width: 500px;        /* optional: limit max size on mobile */
+        display: block;
+        margin: 0 auto;
+    }
+    .about2-textdiv p {
+        font-size: 1.1rem;
+        text-align: left;        /* keep paragraphs left-aligned for readability */
+    }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+    .about2 {
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+    .about2-textdiv h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+    }
+    .about2-textdiv p {
+        font-size: 1rem;
+    }
+    .about2-textdiv span {
+        width: 80px;             /* smaller golden line */
+        height: 6px;
+    }
+}
+
+.about3{
+    width: 100%;
+    background-color: #fceee5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    gap: 2rem;
+    text-align: center;
+}
+.about3 span {
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+.about3 h1{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: bold;
+}
+.about3 p{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: large;
+    line-height: 1.5;
+}
+/* ----------------------------------------------
+   ABOUT SECTION 3 - RESPONSIVE RULES
+   ---------------------------------------------- */
+
+/* Tablet (769px – 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .about3 {
+        padding: 4rem 3rem;      /* reduce side padding */
+        gap: 1.8rem;
+    }
+    .about3 p {
+        font-size: 1.1rem;       /* slightly smaller for readability */
+    }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .about3 {
+        padding: 3rem 2rem;
+        gap: 1.5rem;
+    }
+    .about3 p {
+        font-size: 1rem;
+        max-width: 100%;         /* ensure text uses full width on small screens */
+    }
+    .about3 span {
+        width: 80px;             /* scale down golden line */
+        height: 6px;
+    }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+    .about3 {
+        padding: 2rem 1rem;
+        gap: 1.2rem;
+    }
+    .about3 h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+    }
+    .about3 p {
+        font-size: 0.95rem;
+    }
+    .about3 span {
+        width: 60px;
+        height: 5px;
+    }
+}
+
+/* Optional: Limit paragraph width on larger screens for better readability */
+@media (min-width: 1025px) {
+    .about3 p {
+        max-width: 800px;        /* keeps text from stretching too wide */
+        margin: 0 auto;          /* centers it within the section */
+    }
+}
+
+.about4{
+    width: 100%;
+    height: 80vh;
+    background: url(images/about4.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.about4 div{
+    width: 40%;
+    height: 400px;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.about4 div h1{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+}
+.about4 div p{
+    font-family: sans-serif;
+    color: black;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: large;
+    line-height: 1.5;
+}
+.about4 div span {
+    display: block;
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+/* ----------------------------------------------
+   ABOUT SECTION 4 - RESPONSIVE RULES
+   ---------------------------------------------- */
+
+/* Tablet (769px – 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .about4 {
+        padding: 3rem;            /* reduce side padding */
+    }
+    .about4 div {
+        width: 50%;               /* slightly wider on tablet */
+        height: auto;             /* let height be content-driven */
+        min-height: 350px;        /* maintain minimum height */
+        padding: 2rem;
+    }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .about4 {
+        padding: 2rem 1.5rem;
+        justify-content: center;  /* center the card on small screens */
+    }
+    .about4 div {
+        width: 90%;               /* take most of the width */
+        max-width: 500px;         /* but not too wide */
+        height: auto;             /* auto height based on content */
+        min-height: 300px;        /* maintain readable space */
+        padding: 2rem 1.5rem;
+        margin: 0 auto;           /* center horizontally */
+    }
+    .about4 div h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+    }
+    .about4 div p {
+        font-size: 1rem;
+    }
+    .about4 div span {
+        width: 80px;
+        height: 6px;
+    }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+    .about4 {
+        padding: 1.5rem 1rem;
+    }
+    .about4 div {
+        width: 100%;
+        padding: 1.5rem;
+        min-height: 250px;
+        gap: 1rem;                /* reduce gap between elements */
+    }
+    .about4 div h1 {
+        font-size: 1.5rem;
+    }
+    .about4 div p {
+        font-size: 0.95rem;
+    }
+    .about4 div span {
+        width: 60px;
+        height: 5px;
+    }
+}
+
+/* Optional: Ensure background covers well on all devices */
+.about4 {
+    background-attachment: fixed; /* optional parallax effect, but can be removed */
+}
+
+.service1{
+    width: 100%;
+    height: auto;
+    background: url(images/Service1.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    gap: 2rem; 
+}
+.service1 h1{
+    font-family: sans-serif;
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+}
+.service1 span{
+    display: block;
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+    position: relative;
+    z-index: 2;               /* bring above background image/overlays */
+    margin: 0.75rem 0;        /* add breathing room */
+    align-self: center;
+}
+/* Carousel styles */
+.carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1); /* subtle background if images don't load */
+    backdrop-filter: blur(2px);
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    aspect-ratio: 16 / 9; /* consistent height */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Navigation buttons */
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    color: #333;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 10;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+/* Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: goldenrod;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-prev,
+    .carousel-next {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-prev,
+    .carousel-next {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    .carousel-dots {
+        gap: 8px;
+    }
+}
+
+/* Additional carousel rules matching current HTML markup (.carousel-inner, .carousel-track, .slide) */
+.carousel {
+    width: 100%;
+    max-width: 900px; /* reduced default max width */
+    margin: 1.5rem auto;
+}
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 400ms ease;
+}
+.slide {
+    flex: 0 0 30%;
+    max-width: 30%;
+    opacity: 0.45;
+    transform: scale(0.9);
+    filter: blur(2px) saturate(85%);
+    transition: all 400ms ease;
+    cursor: pointer;
+}
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.slide.active {
+    flex: 0 0 56%;
+    max-width: 56%;
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+}
+.slide.left, .slide.right {
+    opacity: 0.7;
+    transform: scale(0.95);
+    filter: blur(1px) saturate(90%);
+}
+
+/* Buttons for current HTML markup */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 48px;
+    height: 64px;
+    font-size: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    z-index: 5;
+}
+.carousel-btn.prev { left: -14px; }
+.carousel-btn.next { right: -14px; }
+
+.carousel-dots .dot { width: 10px; height: 10px; }
+.carousel-dots .dot.active { background: rgb(87,24,24); }
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .carousel { max-width: 760px; }
+    .slide { flex: 0 0 40%; max-width: 40%; }
+    .slide.active { flex: 0 0 70%; max-width: 70%; }
+    .carousel-btn { width: 44px; height: 56px; }
+}
+
+@media (max-width: 768px) {
+    .carousel { max-width: 92%; margin: 1rem auto; }
+    .slide { flex: 0 0 80%; max-width: 80%; opacity: 0.6; }
+    .slide.active { flex: 0 0 100%; max-width: 100%; }
+    .carousel-btn { width: 36px; height: 44px; font-size: 18px; }
+    .carousel-btn.prev { left: 6px; }
+    .carousel-btn.next { right: 6px; }
+}
+
+@media (max-width: 480px) {
+    .carousel { max-width: 100%; margin: 0.5rem auto; padding: 0 0.5rem; }
+    .carousel-inner { height: 70vh; } /* larger carousel on mobile */
+    .carousel-track { align-items: stretch; }
+    .slide { flex: 0 0 100%; max-width: 100%; opacity: 1; transform: none; }
+    .slide img { height: 100%; object-fit: cover; }
+    .slide.active { flex: 0 0 100%; }
+    .carousel-btn { display: none; } /* hide buttons on very small screens */
+    .carousel-dots { margin-top: 0.5rem; }
+}
+
+.service2 {
+        background: url(images/Services2.png);
+        background-size: cover;
+        background-position: center;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .service2 h1 {
+        font-family: sans-serif;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: bold;
+    }
+    .service2 span {
+        display: block;
+        width: 100px;             /* fixed width instead of percentage */
+        height: 8px;
+        background-color: goldenrod;
+    }
+    .service-grid {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .service-card {
+        background-color: #fceee5;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        flex: 1;
+        min-width: 250px;
+        text-align: center;
+    }
+    .service-card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-bottom: 0.75rem;
+    }
+    .service-card h2 {
+        font-family: sans-serif;
+        color: rgb(87, 24, 24);
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+
+    }
+    .service-card p {
+        font-family: sans-serif;
+        color: rgb(0, 0, 0);
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+.mds{
+    background-color: #fceee5;
+    background-size: cover;
+    background-position: center;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.mds h1 {
+    font-family: sans-serif;
+    color: rgb(87, 24, 24);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+}
+.mds span {
+    display: block;
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+.mds iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* responsive video styling */
+.mds video {
+    width: 100%;           /* scale to container */
+    max-width: 900px;      /* optional upper limit */
+    height: auto;          /* maintain aspect ratio */
+    display: block;        /* remove inline spacing */
+    border-radius: 8px;    /* match iframe style */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ----------------------------------------------
+   MOBILE RESPONSIVE IMPROVEMENTS
+   ---------------------------------------------- */
+
+/* Service1 & Carousel - make carousel larger on mobile */
+@media (max-width: 768px) {
+    .service1 {
+        padding: 1.5rem 1rem;   /* reduce side padding */
+    }
+
+    .carousel-slide {
+        aspect-ratio: auto;      /* remove fixed ratio, let height be determined by image */
+        height: 50vh;            /* make carousel taller (half the viewport height) */
+        min-height: 300px;       /* but not too small */
+    }
+
+    .carousel-slide img {
+        object-fit: cover;       /* keep images covering the area */
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 40px;             /* slightly larger buttons for easier tapping */
+        height: 40px;
+        font-size: 20px;
+        background: rgba(255,255,255,0.9);
+    }
+
+    .dot {
+        width: 12px;             /* larger dots */
+        height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service1 {
+        padding: 1rem 0.5rem;
+    }
+
+    .carousel-slide {
+        height: 60vh;            /* even taller on very small screens */
+        min-height: 350px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .carousel-dots {
+        gap: 12px;               /* more space between dots */
+        margin-top: 12px;
+    }
+
+    .dot {
+        width: 14px;             /* even larger dots */
+        height: 14px;
+    }
+}
+
+/* Service2 (cards) - stack on mobile */
+@media (max-width: 768px) {
+    .service2 {
+        padding: 2rem 1rem;
+    }
+
+    .service-grid {
+        flex-direction: column;  /* stack cards vertically */
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .service-card img {
+        max-height: 250px;       /* limit image height on mobile */
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 480px) {
+    .service2 {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .service-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .service-card p {
+        font-size: 0.95rem;
+    }
+}
+
+/* MDS (video section) - responsive iframe */
+@media (max-width: 768px) {
+    .mds {
+        padding: 2rem 1rem;
+    }
+
+    .mds iframe {
+        height: auto;            /* let height be determined by aspect ratio */
+        aspect-ratio: 16 / 9;    /* maintain video proportions */
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .mds {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .mds h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Ensure the golden spans are centered on mobile where needed */
+@media (max-width: 768px) {
+    .service1 span,
+    .service2 span,
+    .mds span {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* ----------------------------------------------
+   TESTIMONIALS CAROUSEL
+   ---------------------------------------------- */
+.testimonials {
+    width: 100%;
+    padding: 5rem 2rem;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.testimonials h1 {
+    font-family: sans-serif;
+    color: rgb(87, 24, 24);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.testimonials span {
+    display: block;
+    width: 100px;
+    height: 8px;
+    background-color: goldenrod;
+    margin: 0 auto 2rem auto;
+}
+
+.testimonial-carousel {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.testimonial-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.testimonial-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial-slide {
+    flex: 0 0 100%;
+    width: 100%;
+}
+
+.testimonial-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.testimonial-text {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    font-style: italic;
+    quotes: "“" "”" "‘" "’";
+}
+
+.testimonial-text::before {
+    content: "“";
+    font-size: 2rem;
+    color: goldenrod;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+}
+
+.testimonial-text::after {
+    content: "”";
+    font-size: 2rem;
+    color: goldenrod;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+}
+
+.testimonial-author h3 {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    color: rgb(87, 24, 24);
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+.testimonial-author p {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Navigation buttons */
+.testimonial-prev,
+.testimonial-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.testimonial-prev:hover,
+.testimonial-next:hover {
+    background: white;
+}
+
+.testimonial-prev {
+    left: 10px;
+}
+
+.testimonial-next {
+    right: 10px;
+}
+
+/* Dots */
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.testimonial-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.testimonial-dots .dot.active {
+    background: goldenrod;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 3rem 1rem;
+    }
+    .testimonial-content {
+        padding: 2rem 1.5rem;
+    }
+    .testimonial-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    .testimonial-author h3 {
+        font-size: 1.3rem;
+    }
+    .testimonial-author p {
+        font-size: 1rem;
+    }
+    .testimonial-prev,
+    .testimonial-next {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials {
+        padding: 2rem 0.75rem;
+    }
+    .testimonial-content {
+        padding: 1.5rem 1rem;
+    }
+    .testimonial-text {
+        font-size: 1rem;
+    }
+    .testimonial-author h3 {
+        font-size: 1.2rem;
+    }
+    .testimonial-prev,
+    .testimonial-next {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+.contact{
+    width: 100%;
+    padding: 4rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(images/contact.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.contact h1{
+    font-family: sans-serif;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+}
+.contact span{
+    display: block;
+    width: 100px;             /* fixed width instead of percentage */
+    height: 8px;
+    background-color: goldenrod;
+}
+.contact-content {
+    width: 100%;
+    padding: 3rem;
+    background-color: white;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.google-map{
+
+}
+.form-div {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-div h2 {
+    font-family: sans-serif;
+    color: rgb(87, 24, 24);
+    font-size: 1.5rem;
+}
+.form-div h3{
+    font-family: sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 1.1rem;
+}
+.form-div p{
+    font-family: sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-div form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-div form input{
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.form-div form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+}
+.form-div form button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(87, 24, 24);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/* ----------------------------------------------
+   CONTACT SECTION - RESPONSIVE RULES
+   ---------------------------------------------- */
+
+/* Make map iframe responsive */
+.google-map iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .contact {
+        padding: 3rem;
+    }
+    .contact-content {
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .contact {
+        padding: 2rem 1rem;
+    }
+    .contact-content {
+        flex-direction: column;    /* stack map and form vertically */
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+    .google-map iframe {
+        width: 100%;
+        height: 300px;             /* fixed height for better mobile experience */
+    }
+    .form-div {
+        max-width: 100%;           /* full width on mobile */
+    }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+    .contact {
+        padding: 1.5rem 0.5rem;
+    }
+    .contact-content {
+        padding: 1.5rem 1rem;
+    }
+    .google-map iframe {
+        height: 250px;             /* smaller height for very small screens */
+    }
+    .form-div h2 {
+        font-size: 1.3rem;
+    }
+    .form-div h3 {
+        font-size: 1rem;
+    }
+    .form-div form input,
+    .form-div form textarea,
+    .form-div form button {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+}
+/* ----------------------------------------------
+   CONTACT SECTION - DESKTOP MAP SIZE INCREASE
+   ---------------------------------------------- */
+@media (min-width: 1025px) {
+    .google-map iframe {
+        width: 800px;      /* larger width for desktop */
+        height: 500px;     /* proportional height */
+    }
+
+    /* Optional: Adjust flex layout for better balance */
+    .contact-content {
+        gap: 3rem;         /* more space between map and form */
+    }
+}
